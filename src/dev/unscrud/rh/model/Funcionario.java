@@ -21,6 +21,7 @@ public class Funcionario {
 		this.salario = salario;
 	}
 
+	// TODO: Isolar em outra classe para melhorar a coesão
 	public void reajustarSalario(BigDecimal aumento) {
 		BigDecimal percentualReajuste = aumento.divide(salario, RoundingMode.HALF_UP);
 		if (percentualReajuste.compareTo(new BigDecimal("0.4")) > 0) {
