@@ -1,10 +1,7 @@
 package dev.unscrud.rh.model;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
-
-import dev.unscrud.rh.ValidacaoException;
 
 public class Funcionario {
 
@@ -19,16 +16,6 @@ public class Funcionario {
 		this.cpf = cpf;
 		this.cargo = cargo;
 		this.salario = salario;
-	}
-
-	// TODO: Isolar em outra classe para melhorar a coesão
-	public void reajustarSalario(BigDecimal aumento) {
-		BigDecimal percentualReajuste = aumento.divide(salario, RoundingMode.HALF_UP);
-		if (percentualReajuste.compareTo(new BigDecimal("0.4")) > 0) {
-			throw new ValidacaoException("Reajuste nao pode ser superior a 40% do salario!");
-		}
-		this.salario = this.salario.add(aumento);
-		this.dataUltimoReajuste = LocalDate.now();
 	}
 
 	public String getNome() {
@@ -69,6 +56,11 @@ public class Funcionario {
 
 	public void setDataUltimoReajuste(LocalDate dataUltimoReajuste) {
 		this.dataUltimoReajuste = dataUltimoReajuste;
+	}
+
+	public void atualizarSalario(BigDecimal novoSalario) {
+		this.salario = novoSalario;
+		this.dataUltimoReajuste = LocalDate.now();
 	}
 
 }
