@@ -1,4 +1,4 @@
-package br.com.alura.rh.model;
+package dev.unscrud.rh.model;
 
 public enum Cargo {
 
